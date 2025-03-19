@@ -4,5 +4,9 @@ A simple electron tool that converts PolyTrack replay strings into inputs compat
 
 ## Building from source:
 First, clone this repository.
-```npm install```
-```npm run package```
+```
+npm install
+```
+```
+npm run package
+```
