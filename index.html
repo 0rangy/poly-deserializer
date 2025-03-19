@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./bootstrap.min.css" type="text/css">
+
+        <script src="./jquery.slim.min.js" ></script>
+        <script src="./popper.min.js" ></script>
+        <script src="./bootstrap.min.js"></script>
+        <script src="./deserializer.js"></script>
+        
+        <title>PolyTrack Recording to TAS Input</title>
+    </head>
+    <body style="padding:50px">
+        <div class="form-group m-5" id="1stdiv">
+            <label for="title">
+                PolyTrack Recording
+            </label>
+            <input name="title" id="title" type="text" class="form-control" placeholder="AAAAAAAAAAAAAAAAAAAAAAA">
+            <br>
+            <label for="body">
+                TAS Inputs
+            </label>
+            <textarea name="body" id="body" rows="5" class="form-control" placeholder="0,w"></textarea>
+            <br>
+            <button class="btn btn-primary" onclick="onClick()">Convert</button>
+            <button class="btn btn-primary" onclick="navigator.clipboard.writeText(document.getElementById('body').value)">Copy</button>
+        </div>
+        <script>
+            let onClick = () => {
+                const polyReplay = document.getElementById("title").value;
+                let keys = deserialize(polyReplay);
+                console.log(keys);
+                let strArr = [];
+                keys.forEach( action => {
+                    console.log(action);
+                    const controls = action.controls;
+                    strArr.push(`${action.frame},${controls.up ? "w" : ""}${controls.down ? "s" : ""}${controls.right ? "d" : ""}${controls.left ? "a" : ""}`);
+                });
+                document.getElementById("body").value = strArr.join("\n")
+            }
+        </script>
+    </body>
+</html>
