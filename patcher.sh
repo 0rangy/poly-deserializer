@@ -1,1 +1,1 @@
-xattr -c ./PolyExtractor.app
+xattr -c ./PolyDeserializer.app
