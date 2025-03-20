@@ -1,0 +1,1 @@
+xattr -c ./PolyDeserializer.app
